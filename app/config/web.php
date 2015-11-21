@@ -39,6 +39,7 @@ $config = [
         ],
         'db' => require(__DIR__ . '/db.php'),
     ],
+    'defaultRoute' => 'book',
     'params' => $params,
 ];
 
