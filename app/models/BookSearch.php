@@ -66,6 +66,18 @@ class BookSearch extends Book
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'preview', $this->preview]);
 
+        $query->joinWith('author')
+            ->select([
+                '{{books}}.*',
+                "CONCAT({{authors}}.firstname, ' ', {{authors}}.lastname) as author_fullname"
+            ])
+            ->asArray();
+
+        $dataProvider->sort->attributes['author_fullname'] = [
+            'asc' => ['author_fullname' => SORT_ASC],
+            'desc' => ['author_fullname' => SORT_DESC],
+        ];
+
         return $dataProvider;
     }
 }
