@@ -78,4 +78,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Book', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php echo newerton\fancybox\FancyBox::widget([ 'target' => 'a[href$=jpg]', ]); ?>
+
 </div>
