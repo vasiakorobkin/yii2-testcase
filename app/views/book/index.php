@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use newerton\fancybox\FancyBox;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\BookSearch */
@@ -63,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'view' => function($url)
                     {
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span> Просм', $url);
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span> Просм', $url, ['class' => 'modal-ajax fancybox.ajax', 'target' => '_blank']);
                     },
                     'delete' => function($url)
                     {
@@ -78,6 +79,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Book', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php echo newerton\fancybox\FancyBox::widget([ 'target' => 'a[href$=jpg]', ]); ?>
+    <?php echo FancyBox::widget([ 'target' => 'a[href$=jpg], .modal-ajax']); ?>
 
 </div>
