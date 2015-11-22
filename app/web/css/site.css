@@ -103,6 +103,15 @@ h1{
     width: 120px;
 }
 
+.min-dtp{
+    display: inline-block;
+    height: 34px;
+    margin: 0 5px;
+    text-align: center;
+    vertical-align: middle;
+    width: 300px;
+}
+
 
 .iblock{
     display: inline-block;

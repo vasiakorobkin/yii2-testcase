@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\BookSearch */
@@ -34,6 +35,30 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'name')
         ->label('Название');
     ?>
+
+    <br>
+    <label class="control_label">Дата выхода книги: </label>
+
+    <?= $form->field($model, 'date_min', [
+        'template' => $dateRangeTpl,
+        'options' => ['class' => 'min-dtp']
+    ])->widget(DatePicker::className(), [
+        'options' => ['class' => $inputClasses],
+        'pluginOptions' => [
+            'format' => 'yyyy-mm-dd',
+        ],
+    ]); ?>
+
+    <label class="control-label ml20">до</label>
+
+    <?= $form->field($model, 'date_max', [
+        'template' => $dateRangeTpl,
+        'options' => ['class' => 'min-dtp']])->widget(DatePicker::className(), [
+        'options' => ['class' => $inputClasses],
+        'pluginOptions' => [
+            'format' => 'yyyy-mm-dd',
+        ],
+    ]); ?>
 
     <?= Html::submitButton('Искать', ['class' => 'btn btn-primary pull-right']) ?>
 

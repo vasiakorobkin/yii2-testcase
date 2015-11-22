@@ -13,6 +13,10 @@ use app\models\Author;
  */
 class BookSearch extends Book
 {
+
+    public $date_min;
+    public $date_max;
+
     /**
      * @inheritdoc
      */
@@ -21,6 +25,7 @@ class BookSearch extends Book
         return [
             [['id', 'author_id'], 'integer'],
             [['name', 'date_create', 'date_update', 'preview', 'date'], 'safe'],
+            [[ 'date_min', 'date_max'], 'safe'],
         ];
     }
 
@@ -58,14 +63,13 @@ class BookSearch extends Book
 
         $query->andFilterWhere([
             '{{books}}.id' => $this->id,
-            'date_create' => $this->date_create,
-            'date_update' => $this->date_update,
-            'date' => $this->date,
             'author_id' => $this->author_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'preview', $this->preview]);
+        $query->andFilterWhere(['>', 'date', $this->date_min]);
+        $query->andFilterWhere(['<', 'date', $this->date_max]);
+
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         $query->joinWith('author')
             ->select([
