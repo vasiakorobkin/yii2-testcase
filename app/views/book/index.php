@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                     'update' => function($url)
                     {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span> Ред', $url);
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span> Ред', $url, ['target' => '_blank']);
                     },
                     'view' => function($url)
                     {

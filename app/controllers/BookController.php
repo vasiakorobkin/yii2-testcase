@@ -46,6 +46,8 @@ class BookController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $authors = $searchModel->getAuthors()->all();
 
+        Yii::$app->session->set('lastBookIndexUrl', Yii::$app->request->getUrl());
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -92,12 +94,17 @@ class BookController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $searchModel = new BookSearch();
+        $authors = $searchModel->getAuthors()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $url = Yii::$app->session->get('lastBookIndexUrl');
+            if(!$url) $url = "/";
+            return $this->redirect($url);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'authors' => $authors,
             ]);
         }
     }
