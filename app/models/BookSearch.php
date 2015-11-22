@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Book;
+use app\models\Author;
 
 /**
  * BookSearch represents the model behind the search form about `app\models\Book`.
@@ -56,7 +57,7 @@ class BookSearch extends Book
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            '{{books}}.id' => $this->id,
             'date_create' => $this->date_create,
             'date_update' => $this->date_update,
             'date' => $this->date,
@@ -79,5 +80,19 @@ class BookSearch extends Book
         ];
 
         return $dataProvider;
+    }
+
+    /**
+     * Returns query to provide information for authors select
+     *
+     * @return ActiveQuery
+     */
+    public function getAuthors()
+    {
+        $query = Author::find();
+        $query->select(['{{authors}}.id', "CONCAT({{authors}}.firstname, ' ', {{authors}}.lastname) as fullname"])
+            ->orderBy('fullname')
+            ->asArray();
+        return $query;
     }
 }

@@ -91,9 +91,43 @@ a.desc:after {
 }
 
 
+h1{
+    margin-bottom: 30px;
+}
+
 .summary{
     margin-bottom: 15px;
 }
+
 .img-preview{
     width: 120px;
+}
+
+
+.iblock{
+    display: inline-block;
+}
+
+.wauto{
+    width: auto;
+}
+
+.ml10{
+    margin-left: 10px;
+}
+
+.ml20{
+    margin-left: 10px;
+}
+
+.mr30{
+    margin-right: 30px;
+}
+
+.mb10{
+    margin-bottom: 10px;
+}
+
+.mb50{
+    margin-bottom: 50px;
 }
