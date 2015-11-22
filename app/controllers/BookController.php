@@ -29,9 +29,6 @@ class BookController extends Controller
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
             ],
         ];
     }
@@ -75,12 +72,15 @@ class BookController extends Controller
     public function actionCreate()
     {
         $model = new Book();
+        $searchModel = new BookSearch();
+        $authors = $searchModel->getAuthors()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'authors' => $authors
             ]);
         }
     }

@@ -33,7 +33,7 @@ class Book extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'preview'], 'required'],
+            [['name'], 'required'],
             [['date_create', 'date_update', 'date'], 'safe'],
             [['author_id'], 'integer'],
             [['name', 'preview'], 'string', 'max' => 50]
