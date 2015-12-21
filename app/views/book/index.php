@@ -64,6 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'view' => function($url)
                     {
+                        $url = $url . "&isAjax=1";
                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span> Просм', $url, ['class' => 'modal-ajax fancybox.ajax', 'target' => '_blank']);
                     },
                     'delete' => function($url)

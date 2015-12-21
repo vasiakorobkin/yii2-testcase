@@ -59,9 +59,16 @@ class BookController extends Controller
      */
     public function actionView($id)
     {
-        return $this->renderAjax('view', [
+        $params = [
             'model' => $this->findModel($id),
-        ]);
+        ];
+        $isAjax = Yii::$app->request->get('isAjax', false);
+        if ($isAjax) {
+            $resp = $this->renderAjax('view', $params);
+        } else {
+            $resp = $this->render('view', $params);
+        }
+        return $resp;
     }
 
     /**
